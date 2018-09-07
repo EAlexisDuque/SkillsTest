@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#005792</color>
+    <color name="colorPrimaryDark">#13334c</color>
+    <color name="colorAccent">#fd5f00</color>
+
+    <!-- SkillsTest Colors -->
+    <color name="color1">#f8b500</color>
+    <color name="color_background">#5c636e</color>
+    <color name="color_text">#393e46</color>
+    <color name="color_text_2">#f7f7f7</color>
+    <color name="color_background_2">#1d97c1</color>
+</resources>

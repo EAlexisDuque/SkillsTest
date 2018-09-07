@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Skills Test</string>
+    <string name="action_settings">Settings</string>
+    <string name="content_not_available">Content not\navailable</string>
+    <string name="leagues_not_available">Ho hay Ligas disponibles</string>
+    <string name="title_activity_teams_of_league">Teams</string>
+    <string name="no_text">...</string>
+    <string name="leagues">Leagues</string>
+
+    <string name="txt_foundation_year">Foundation year:</string>
+    <string name="txt_team_badge">Team badge</string>
+    <string name="txt_jersey">Jersey</string>
+    <string name="txt_site">Website:</string>
+</resources>
