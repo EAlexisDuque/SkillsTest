@@ -45,12 +45,13 @@ class ListTeamsOfLeagueActivity : AppCompatActivity(), IListTeamsOfLeagueContrac
 
     override fun showTeamOfLeaguesDetails(teamOfLeague: TeamOfLeague, isDualPane: Boolean) {
         if (isDualPane) {
-            var teamDetailFragment = TeamOfLeagueDetailsFragment.newInstance(teamOfLeague)
-
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.teamsLeagueDetailsPane, teamDetailFragment)
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            transaction.commit()
+            val teamDetailFragment = TeamOfLeagueDetailsFragment.newInstance(teamOfLeague)
+             supportFragmentManager.beginTransaction()
+                    .apply {
+                        replace(R.id.teamsLeagueDetailsPane, teamDetailFragment)
+                        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        commitNow()
+                    }
         } else {
             val intent = Intent(applicationContext, TeamOfLeagueDetailsActivity::class.java)
             intent.putExtra(PARAM_TEAM_OF_LEAGUE, teamOfLeague)

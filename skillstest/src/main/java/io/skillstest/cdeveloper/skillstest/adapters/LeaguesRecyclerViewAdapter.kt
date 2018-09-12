@@ -49,5 +49,6 @@ class LeaguesRecyclerViewAdapter(private val mLeagues: ArrayList<League> = Array
             tvLeagueIndex?.text = posItem.toString()
         }
     }
+
 }
 

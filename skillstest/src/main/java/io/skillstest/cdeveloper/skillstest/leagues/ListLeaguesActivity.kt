@@ -22,6 +22,7 @@ class ListLeaguesActivity : AppCompatActivity(), ILeagueContract.View, SwipeRefr
 
     @Inject
     lateinit var presenter: ILeagueContract.Presenter
+
     private lateinit var adapter: LeaguesRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +49,14 @@ class ListLeaguesActivity : AppCompatActivity(), ILeagueContract.View, SwipeRefr
     override fun onResume() {
         super.onResume()
 
-        if (adapter.itemCount <= 0)
+        if (adapter.itemCount == 0)
             presenter.loadLeagues()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelableArrayList(PARAM_LIST_LEAGUES, adapter.listOfLeagues())
         super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(PARAM_LIST_LEAGUES, adapter.listOfLeagues())
+
     }
 
     override fun onRefresh() {
@@ -73,8 +75,9 @@ class ListLeaguesActivity : AppCompatActivity(), ILeagueContract.View, SwipeRefr
     }
 
     override fun showLeagueNotAvailable(hasTeams: Boolean) {
-        if (adapter.itemCount <= 0)
+        if (adapter.itemCount <= 0) {
             contentNotAvailable.visibility = if (hasTeams) View.GONE else View.VISIBLE
+        }
         swipeRefreshLeague.hide()
     }
 
@@ -87,9 +90,9 @@ class ListLeaguesActivity : AppCompatActivity(), ILeagueContract.View, SwipeRefr
     }
 
     override fun leagueItemClick(leagueName: String) {
-        val intent = Intent(applicationContext, ListTeamsOfLeagueActivity::class.java)
-        intent.putExtra(PARAM_LEAGUES_NAME, leagueName)
-        startActivity(intent)
+        startActivity(Intent(applicationContext, ListTeamsOfLeagueActivity::class.java).apply {
+            putExtra(PARAM_LEAGUES_NAME, leagueName)
+        })
     }
 
     companion object {

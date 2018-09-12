@@ -20,6 +20,7 @@ class TeamOfLeagueDetailsFragment : Fragment(), ITeamOfLeagueDetailsContract.Vie
 
     @Inject
     lateinit var presenter: ITeamOfLeagueDetailsContract.Presenter
+
     private var teamOfLeague: TeamOfLeague? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

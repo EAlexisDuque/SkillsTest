@@ -17,6 +17,13 @@ class TeamOfLeagueDetailsActivity : AppCompatActivity() {
 
         teamOfLeague = intent.extras?.getParcelable(PARAM_TEAM_OF_LEAGUE)
 
+        teamOfLeague?.let {
+            if (savedInstanceState == null) {
+                val teamDetailsFragment = TeamOfLeagueDetailsFragment.newInstance(it)
+                supportFragmentManager.beginTransaction().replace(R.id.teamsLeagueDetailsPane, teamDetailsFragment).commit()
+            }
+        }
+
         if (teamOfLeague == null) {
             finish()
             return
@@ -27,9 +34,5 @@ class TeamOfLeagueDetailsActivity : AppCompatActivity() {
             return
         }
 
-        if (savedInstanceState == null) {
-            val teamDetailsFragment = TeamOfLeagueDetailsFragment.newInstance(teamOfLeague!!)
-            supportFragmentManager.beginTransaction().replace(R.id.teamsLeagueDetailsPane, teamDetailsFragment).commit()
-        }
     }
 }

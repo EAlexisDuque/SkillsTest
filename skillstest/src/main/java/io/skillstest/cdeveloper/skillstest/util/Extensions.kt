@@ -14,7 +14,7 @@ fun ImageView.loadImageFromUrl(url: String): ImageView {
 }
 
 fun String.isNotNull(): Boolean {
-    return !equals("") and !(toLowerCase().equals("null"))
+    return !equals("") and (toLowerCase() != "null")
 }
 
 fun SwipeRefreshLayout.hide() {

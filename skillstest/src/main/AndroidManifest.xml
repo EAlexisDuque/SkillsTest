@@ -27,7 +27,7 @@
             android:name=".teamsofleague.ListTeamsOfLeagueActivity"
             android:label="@string/title_activity_teams_of_league"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".teamsofleague.details.TeamOfLeagueDetailsActivity"></activity>
+        <activity android:name=".teamsofleague.details.TeamOfLeagueDetailsActivity"/>
     </application>
 
 </manifest>
