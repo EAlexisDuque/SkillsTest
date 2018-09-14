@@ -18,11 +18,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -30,7 +26,15 @@
             android:label="@string/title_activity_teams_of_league"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".teamsofleague.details.TeamOfLeagueDetailsActivity" />
-        <activity android:name=".flipcardanimation.FlipCardActivity"/>
+        <activity android:name=".flipcardanimation.FlipCardActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
