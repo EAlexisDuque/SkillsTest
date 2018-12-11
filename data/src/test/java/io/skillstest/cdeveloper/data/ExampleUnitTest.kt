@@ -40,7 +40,7 @@ class ExampleUnitTest : BasePactTest<INetworkService>() {
     }
 
     @Test
-    @PactVerification(PROVIDER)
+    @PactVerification("test_provider")
     fun shouldGetTeams() {
         val testObserver = TestObserver<ApiTournament>()
         service?.obtainLeagues()?.subscribeWith(testObserver)
@@ -65,3 +65,4 @@ class ExampleUnitTest : BasePactTest<INetworkService>() {
 // https://github.com/DiUS/pact-workshop-android
 // https://blog.doordash.com/contract-testing-with-pact-7cf108ced8c4
 // https://docs.pact.io/implementation_guides
+// https://www.baeldung.com/pact-junit-consumer-driven-contracts
