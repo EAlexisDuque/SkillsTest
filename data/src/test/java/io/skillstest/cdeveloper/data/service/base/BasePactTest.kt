@@ -25,18 +25,21 @@ abstract class BasePactTest<T> {
     open var method: String? = null
 
     @get:Rule
-    open var mockProvider = PactProviderRuleMk2(CONSUMER, this)
+    open var mockProvider = PactProviderRuleMk2("test_provider", "localhost", 8080, this)
 
     @Before
     fun setup() {
         setupWebClient()
     }
 
-    fun setupWebClient() = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(OkHttpClient.Builder().build())
-            .build()
-            .create(type)
+    fun setupWebClient(){
+        val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(OkHttpClient.Builder().build())
+                .build()
+
+        service = retrofit.create(type)
+    }
 }

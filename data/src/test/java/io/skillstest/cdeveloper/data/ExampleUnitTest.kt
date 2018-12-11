@@ -21,16 +21,20 @@ class ExampleUnitTest : BasePactTest<INetworkService>() {
     override var url: String? = "all_leagues.php"
     override var method: String? = METHOD_GET
 
-    @Pact(consumer = CONSUMER)
+    @Pact(consumer = "test_consumer")
     @Throws(UnsupportedEncodingException::class)
     fun createPact(builder: PactDslWithProvider): RequestResponsePact {
+        val headers = HashMap<String, String>()
+        headers["Content-Type"] = "application/json"
+
         return builder
-                .uponReceiving(GET_LEAGUES_DESCRIPTION)
-                .path(url)
-                .method(method)
+                .given("test GET")
+                .uponReceiving("GET REQUEST")
+                .path("/")
+                .method("GET")
                 .willRespondWith()
                 .status(STATUS_OK)
-                .headers(mapOf(CONTENT_TYPE to APPLICATION_JSON))
+                .headers(headers)
                 .body(JSON_CONTRACT)
                 .toPact()
     }
