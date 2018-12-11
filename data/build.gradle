@@ -35,14 +35,21 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
+
+kapt { generateStubs = true }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.hamcrest:hamcrest-library:1.3'
-    testImplementation 'au.com.dius:pact-jvm-consumer-junit_2.12:3.5.12'
+    testImplementation 'au.com.dius:pact-jvm-consumer-junit_2.12:3.6.0-rc.1'
     testImplementation 'au.com.dius:pact-jvm-consumer-java8_2.12:3.5.12'
+    implementation "org.slf4j:slf4j-api:1.7.25"
+    implementation "org.slf4j:slf4j-simple:1.6.1"
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
 
     // RX
@@ -60,5 +67,19 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
+    testImplementation "com.squareup.okhttp3:mockwebserver:3.6.0"
+
     implementation project(':domain')
+}
+
+repositories {
+    mavenCentral()
+}
+
+pact {
+    publish {
+        pactDirectory = 'data/target/pacts'
+        pactBrokerUrl = 'https://dXfltyFMgNOFZAxr8io9wJ37iUpY42M:O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1@test.pact.dius.com.au/'
+        version = '1.0.0'
+    }
 }
