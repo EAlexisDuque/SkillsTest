@@ -3,10 +3,11 @@ package io.skillstest.cdeveloper.data
 import au.com.dius.pact.consumer.Pact
 import au.com.dius.pact.consumer.PactVerification
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider
-import au.com.dius.pact.model.PactFragment
+import au.com.dius.pact.model.RequestResponsePact
 import io.reactivex.observers.TestObserver
 import io.skillstest.cdeveloper.data.endpoints.INetworkService
 import io.skillstest.cdeveloper.data.model.ApiTournament
+import io.skillstest.cdeveloper.data.pactbasetest.*
 import org.junit.Test
 import java.io.UnsupportedEncodingException
 
@@ -16,9 +17,8 @@ import java.io.UnsupportedEncodingException
  * @email eduque@condorlabs.io.
  */
 
-class GetData : BasePactTest<INetworkService>() {
+class GetLeaguesPactTest : BasePactTest<INetworkService>() {
 
-    override var service: INetworkService? = null
     override var type: Class<INetworkService>? = INetworkService::class.java
     override var response: String? = Response.LEAGUES_RESPONSE
     override var url: String? = Endpoints.GET_LEAGUES
@@ -26,16 +26,17 @@ class GetData : BasePactTest<INetworkService>() {
 
     @Pact(provider = WALLET_API, consumer = CONSUMER)
     @Throws(UnsupportedEncodingException::class)
-    fun createPact(builder: PactDslWithProvider): PactFragment {
+    fun createPact(builder: PactDslWithProvider): RequestResponsePact {
         return builder
-                .uponReceiving(GET_LEAGUES_DESCRIPTION_TEST)
-                .path(url)
-                .method(method)
+                .given(GET_LEAGUES_STATE_TEST)
+                    .uponReceiving(GET_LEAGUES_DESCRIPTION_TEST)
+                    .path(url)
+                    .method(method)
                 .willRespondWith()
-                .status(SUCCESS_STATUS_CODE)
-                .headers(mapOf(CONTENT_TYPE to JSON_CONTENT_TYPE))
-                .body(response)
-                .toFragment()
+                    .status(SUCCESS_STATUS_CODE)
+                    .headers(mapOf(CONTENT_TYPE to JSON_CONTENT_TYPE))
+                    .body(response)
+                .toPact()
     }
 
     @Test

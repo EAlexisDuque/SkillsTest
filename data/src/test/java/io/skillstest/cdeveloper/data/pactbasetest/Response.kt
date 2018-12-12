@@ -1,10 +1,11 @@
-package io.skillstest.cdeveloper.data
+package io.skillstest.cdeveloper.data.pactbasetest
 
 /**
  * @author Alexis Duque on 12/12/18.
  * @company Condor Labs.
  * @email eduque@condorlabs.io.
  */
+
 object Response {
 
     const val LEAGUES_RESPONSE =  """

@@ -1,4 +1,4 @@
-package io.skillstest.cdeveloper.data
+package io.skillstest.cdeveloper.data.pactbasetest
 
 /**
  * @author Alexis Duque on 12/12/18.
@@ -7,6 +7,6 @@ package io.skillstest.cdeveloper.data
  */
 
 object Endpoints {
-    const val BASE_ROUTE_LEAGUES = "http://localhost:8085"
+    const val BASE_ROUTE_LEAGUES = "http://localhost:$DEFAULT_PORT"
     const val GET_LEAGUES = "/all_leagues.php"
 }

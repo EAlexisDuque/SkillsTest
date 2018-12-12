@@ -1,6 +1,6 @@
-package io.skillstest.cdeveloper.data
+package io.skillstest.cdeveloper.data.pactbasetest
 
-import au.com.dius.pact.consumer.PactProviderRule
+import au.com.dius.pact.consumer.PactProviderRuleMk2
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import org.junit.Before
@@ -34,5 +34,5 @@ abstract class BasePactTest<T> {
     }
 
     @get:Rule
-    var mockProvider = PactProviderRule(WALLET_API, LOCALHOST, DEFAULT_PORT, this)
+    var mockProvider = PactProviderRuleMk2(WALLET_API, LOCALHOST, DEFAULT_PORT, this)
 }
