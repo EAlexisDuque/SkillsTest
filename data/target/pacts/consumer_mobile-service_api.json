@@ -1,9 +1,9 @@
 {
     "provider": {
-        "name": "wallet_api"
+        "name": "service_api"
     },
     "consumer": {
-        "name": "wallet_mobile"
+        "name": "consumer_mobile"
     },
     "interactions": [
         {
