@@ -17,7 +17,16 @@
         "headers": {
           "Content-Type": "application/json"
         },
-        "body": {}
+        "body": {
+          "leagues": [
+            {
+              "idLeague": "4328",
+              "strLeague": "English Premier League",
+              "strSport": "Soccer",
+              "strLeagueAlternate": "Premier League"
+            }
+          ]
+        }
       }
     }
   ],

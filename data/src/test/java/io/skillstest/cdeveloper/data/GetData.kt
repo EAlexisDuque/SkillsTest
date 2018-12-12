@@ -1,21 +1,13 @@
 package io.skillstest.cdeveloper.data
 
 import au.com.dius.pact.consumer.Pact
-import au.com.dius.pact.consumer.PactProviderRule
 import au.com.dius.pact.consumer.PactVerification
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider
 import au.com.dius.pact.model.PactFragment
-import com.google.gson.Gson
 import io.reactivex.observers.TestObserver
 import io.skillstest.cdeveloper.data.endpoints.INetworkService
 import io.skillstest.cdeveloper.data.model.ApiTournament
-import okhttp3.OkHttpClient
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.UnsupportedEncodingException
 
 /**
@@ -24,43 +16,31 @@ import java.io.UnsupportedEncodingException
  * @email eduque@condorlabs.io.
  */
 
-class GetData {
+class GetData : BasePactTest<INetworkService>() {
 
-    private val url = BOARD_CERTIFICATION_EP
-    var service: INetworkService? = null
-
-    @Before
-    fun setupService(){
-        service = Retrofit.Builder()
-                .baseUrl("http://localhost:8085")
-                .addConverterFactory(GsonConverterFactory.create(Gson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(OkHttpClient.Builder().build())
-                .build().create(INetworkService::class.java)
-    }
-
-    @get:Rule
-    open var mockProvider = PactProviderRule(WALLET_API, LOCALHOST, DEFAULT_PORT, this)
+    override var service: INetworkService? = null
+    override var type: Class<INetworkService>? = INetworkService::class.java
+    override var response: String? = Response.LEAGUES_RESPONSE
+    override var url: String? = Endpoints.GET_LEAGUES
+    override var method: String? = GET_REQUEST
 
     @Pact(provider = WALLET_API, consumer = CONSUMER)
     @Throws(UnsupportedEncodingException::class)
-    fun createfragment(builder: PactDslWithProvider): PactFragment {
-        val headers = HashMap<String, String>()
-        headers[CONTENT_TYPE] = JSON_CONTENT_TYPE
+    fun createPact(builder: PactDslWithProvider): PactFragment {
         return builder
-                .uponReceiving("Description")
+                .uponReceiving(GET_LEAGUES_DESCRIPTION_TEST)
                 .path(url)
-                .method("GET")
+                .method(method)
                 .willRespondWith()
                 .status(SUCCESS_STATUS_CODE)
-                .headers(headers)
-                .body("{}")
+                .headers(mapOf(CONTENT_TYPE to JSON_CONTENT_TYPE))
+                .body(response)
                 .toFragment()
     }
 
     @Test
     @PactVerification(WALLET_API)
-    fun shouldGetBoardCertifications() {
+    fun shouldGetLeagues() {
         val testObserver = TestObserver<ApiTournament>()
         service?.obtainLeagues()?.subscribeWith(testObserver)
 
