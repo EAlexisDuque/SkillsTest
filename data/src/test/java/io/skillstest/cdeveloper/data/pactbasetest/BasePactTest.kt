@@ -34,5 +34,5 @@ abstract class BasePactTest<T> {
     }
 
     @get:Rule
-    var mockProvider = PactProviderRuleMk2(WALLET_API, LOCALHOST, DEFAULT_PORT, this)
+    var mockProvider = PactProviderRuleMk2(PROVIDER, LOCALHOST, DEFAULT_PORT, this)
 }

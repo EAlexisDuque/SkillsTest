@@ -6,7 +6,7 @@ package io.skillstest.cdeveloper.data.pactbasetest
  * @email eduque@condorlabs.io.
  */
 
-const val WALLET_API = "service_api"
+const val PROVIDER = "service_api"
 const val CONSUMER = "consumer_mobile"
 const val LOCALHOST = "localhost"
 const val DEFAULT_PORT = 8080

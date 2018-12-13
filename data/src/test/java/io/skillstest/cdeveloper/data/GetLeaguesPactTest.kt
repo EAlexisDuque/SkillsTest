@@ -24,7 +24,7 @@ class GetLeaguesPactTest : BasePactTest<INetworkService>() {
     override var url: String? = Endpoints.GET_LEAGUES
     override var method: String? = GET_REQUEST
 
-    @Pact(provider = WALLET_API, consumer = CONSUMER)
+    @Pact(provider = PROVIDER, consumer = CONSUMER)
     @Throws(UnsupportedEncodingException::class)
     fun createPact(builder: PactDslWithProvider): RequestResponsePact {
         return builder
@@ -40,7 +40,7 @@ class GetLeaguesPactTest : BasePactTest<INetworkService>() {
     }
 
     @Test
-    @PactVerification(WALLET_API)
+    @PactVerification(PROVIDER)
     fun shouldGetLeagues() {
         val testObserver = TestObserver<ApiTournament>()
         service?.obtainLeagues()?.subscribeWith(testObserver)

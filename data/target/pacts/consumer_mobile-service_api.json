@@ -1,46 +1,48 @@
-{
-    "provider": {
-        "name": "service_api"
-    },
-    "consumer": {
-        "name": "consumer_mobile"
-    },
-    "interactions": [
-        {
-            "description": "GET REQUEST for Leagues",
-            "request": {
-                "method": "GET",
-                "path": "/all_leagues.php"
-            },
-            "response": {
-                "status": 200,
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "body": {
-                    "leagues": [
-                        {
-                            "idLeague": "4328",
-                            "strLeague": "English Premier League",
-                            "strSport": "Soccer",
-                            "strLeagueAlternate": "Premier League"
-                        }
-                    ]
-                }
-            },
-            "providerStates": [
-                {
-                    "name": "Leagues Pact test GET"
-                }
-            ]
-        }
-    ],
-    "metadata": {
-        "pactSpecification": {
-            "version": "3.0.0"
+    {
+        "provider": {
+            "name": "service_api"
         },
-        "pact-jvm": {
-            "version": "3.6.0-rc.1"
+        "consumer": {
+            "name": "consumer_mobile"
+        },
+        "interactions": [
+            {
+                "description": "GET REQUEST for Leagues",
+                "request": {
+                    "method": "GET",
+                    "path": "/all_leagues.php"
+                },
+                "response": {
+                    "status": 200,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "leagues": [
+                            {
+                                "idLeague": "4328",
+                                "strLeague": "English Premier League",
+                                "strSport": "Soccer",
+                                "strLeagueAlternate": "Premier League"
+                            }
+                        ]
+                    }
+                },
+                "providerStates": [
+                    {
+                        "name": "Leagues Pact test GET"
+                    }
+                ]
+            }
+        ],
+        "metadata": {
+            "pactSpecification": {
+                "version": "3.0.0"
+            },
+            "pact-jvm": {
+                "version": "3.6.0-rc.1"
+            }
         }
     }
-}
+
+
